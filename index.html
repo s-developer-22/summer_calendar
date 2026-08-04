@@ -309,6 +309,400 @@
     .event.pending.rested .status {
       background:#fff;
     }
+
+    /* Vista Elenco / Calendario */
+    [hidden] {
+      display:none !important;
+    }
+
+    .view-switcher {
+      width:100%;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:6px;
+      margin:0 0 26px;
+      padding:6px;
+      background:var(--paper);
+      border:3px solid var(--ink);
+      border-radius:24px;
+      box-shadow:0 7px 0 var(--shadow);
+    }
+
+    .view-switcher__button {
+      min-width:0;
+      min-height:48px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 8px;
+      border:2px solid transparent;
+      border-radius:17px;
+      background:var(--paper);
+      color:var(--ink);
+      font:inherit;
+      font-size:12px;
+      line-height:1;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.035em;
+      cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .view-switcher__button svg {
+      width:20px;
+      height:20px;
+      flex:0 0 auto;
+      fill:none;
+      stroke:currentColor;
+      stroke-width:2.4;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .view-switcher__button.is-active {
+      color:#fff;
+      background:var(--purple);
+      border-color:var(--ink);
+      box-shadow:2px 3px 0 var(--ink);
+    }
+
+    .view-switcher__button:focus-visible,
+    .calendar-nav-button:focus-visible,
+    .calendar-day-button:focus-visible,
+    .back-to-top:focus-visible {
+      outline:4px solid var(--yellow);
+      outline-offset:3px;
+    }
+
+    .calendar-view {
+      margin:0 0 26px;
+    }
+
+    .calendar-card {
+      padding:16px 12px 18px;
+      background:var(--paper);
+      border:3px solid var(--ink);
+      border-radius:24px;
+      box-shadow:0 8px 0 var(--shadow);
+    }
+
+    .calendar-header {
+      display:grid;
+      grid-template-columns:46px minmax(0,1fr) 46px;
+      align-items:center;
+      gap:8px;
+      margin-bottom:16px;
+    }
+
+    .calendar-month-title {
+      margin:0;
+      text-align:center;
+      font-size:20px;
+      line-height:1;
+      font-weight:1000;
+      letter-spacing:-.02em;
+    }
+
+    .calendar-nav-button {
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      padding:0;
+      border:3px solid var(--ink);
+      border-radius:15px;
+      background:var(--yellow);
+      color:var(--ink);
+      box-shadow:2px 3px 0 var(--ink);
+      font:inherit;
+      font-size:34px;
+      line-height:1;
+      font-weight:1000;
+      cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .calendar-nav-button:disabled {
+      opacity:.35;
+      cursor:default;
+      box-shadow:none;
+    }
+
+    .calendar-weekdays,
+    .calendar-grid {
+      display:grid;
+      grid-template-columns:repeat(7,minmax(0,1fr));
+      gap:5px;
+    }
+
+    .calendar-weekdays {
+      margin-bottom:6px;
+    }
+
+    .calendar-weekdays span {
+      min-width:0;
+      padding:4px 0;
+      text-align:center;
+      font-size:9px;
+      line-height:1;
+      font-weight:1000;
+      letter-spacing:.02em;
+    }
+
+    .calendar-grid {
+      align-items:stretch;
+    }
+
+    .calendar-day,
+    .calendar-day-button {
+      position:relative;
+      min-width:0;
+      aspect-ratio:1 / 1.12;
+      border:2px solid var(--ink);
+      border-radius:12px;
+      background:var(--paper);
+      color:var(--ink);
+    }
+
+    .calendar-day {
+      display:grid;
+      place-items:center;
+    }
+
+    .calendar-day--empty {
+      visibility:hidden;
+      border-color:transparent;
+    }
+
+    .calendar-day-button {
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:3px;
+      padding:3px 2px;
+      font:inherit;
+      cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .calendar-day-button:hover {
+      transform:translateY(-1px);
+    }
+
+    .calendar-day-number {
+      font-size:16px;
+      line-height:1;
+      font-weight:1000;
+    }
+
+    .calendar-day-button.is-event {
+      box-shadow:inset 0 0 0 1px var(--purple);
+    }
+
+    .calendar-day-button.is-event::after {
+      content:"";
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:var(--purple);
+    }
+
+    .calendar-day-button.is-past {
+      background:#f6dfcf;
+    }
+
+    .calendar-day-button.is-past::after {
+      content:"✓";
+      width:16px;
+      height:16px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--coral);
+      color:var(--ink);
+      font-size:11px;
+      line-height:1;
+      font-weight:1000;
+    }
+
+    .calendar-day-button.is-rested {
+      background:#f2f2f2;
+    }
+
+    .calendar-day-button.is-rested::after {
+      content:"😴";
+      font-size:12px;
+      line-height:1;
+    }
+
+    .calendar-day-button.is-special::before {
+      content:"✦";
+      position:absolute;
+      top:2px;
+      right:3px;
+      color:var(--yellow);
+      -webkit-text-stroke:1px var(--ink);
+      font-size:11px;
+      line-height:1;
+    }
+
+    .calendar-day-button.is-today,
+    .calendar-day.is-today {
+      outline:3px solid var(--purple);
+      outline-offset:1px;
+    }
+
+    .calendar-legend {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      margin-top:16px;
+      padding-top:14px;
+      border-top:2px solid var(--ink);
+    }
+
+    .calendar-legend__item {
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      font-size:10px;
+      line-height:1.2;
+      font-weight:900;
+    }
+
+    .legend-symbol {
+      width:17px;
+      height:17px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      font-style:normal;
+      font-size:11px;
+      line-height:1;
+      font-weight:1000;
+    }
+
+    .legend-symbol--event {
+      width:7px;
+      height:7px;
+      margin:0 5px;
+      border-radius:50%;
+      background:var(--purple);
+    }
+
+    .legend-symbol--past {
+      border-radius:50%;
+      background:var(--coral);
+    }
+
+    .legend-symbol--holiday {
+      color:var(--yellow);
+      -webkit-text-stroke:1px var(--ink);
+      font-size:16px;
+    }
+
+    .legend-symbol--today {
+      border:3px solid var(--purple);
+      border-radius:5px;
+      background:var(--paper);
+    }
+
+    .event-calendar-highlight {
+      outline:5px solid var(--yellow);
+      outline-offset:3px;
+      box-shadow:0 11px 0 var(--shadow);
+      transform:translateY(-2px);
+    }
+
+    .back-to-top {
+      position:fixed;
+      right:calc(14px + env(safe-area-inset-right));
+      bottom:calc(18px + env(safe-area-inset-bottom));
+      z-index:20;
+      width:48px;
+      height:48px;
+      display:grid;
+      place-items:center;
+      padding:0;
+      border:3px solid var(--ink);
+      border-radius:17px 21px 16px 20px;
+      background:var(--yellow);
+      color:var(--ink);
+      box-shadow:3px 5px 0 var(--ink);
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transform:translateY(8px) rotate(-3deg);
+      transition:opacity .16s ease, visibility .16s ease, transform .16s ease;
+      cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .back-to-top.is-visible {
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+      transform:translateY(0) rotate(-3deg);
+    }
+
+    .back-to-top svg {
+      width:25px;
+      height:25px;
+      fill:none;
+      stroke:currentColor;
+      stroke-width:3;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    @media (max-width:360px) {
+      .view-switcher__button {
+        gap:5px;
+        font-size:10px;
+      }
+
+      .view-switcher__button svg {
+        width:18px;
+        height:18px;
+      }
+
+      .calendar-card {
+        padding-left:8px;
+        padding-right:8px;
+      }
+
+      .calendar-weekdays,
+      .calendar-grid {
+        gap:3px;
+      }
+
+      .calendar-day,
+      .calendar-day-button {
+        border-radius:10px;
+      }
+
+      .calendar-day-number {
+        font-size:14px;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior:auto;
+      }
+
+      .calendar-day-button:hover,
+      .event-calendar-highlight,
+      .back-to-top,
+      .back-to-top.is-visible {
+        transform:none;
+        transition:none;
+      }
+    }
 </style>
 </head>
 <body>
@@ -322,8 +716,58 @@
 <span class="heart">♥</span>
       Il tempo insieme è ciò che vale davvero.<br/>
       Godiamocelo, perché potrebbe non tornare.
-    </section>
-<section aria-label="Eventi di agosto 2026" class="events">
+    </section><nav aria-label="Seleziona la visualizzazione del calendario" class="view-switcher">
+<button aria-controls="events-list" aria-label="Mostra la vista elenco" aria-pressed="true" class="view-switcher__button is-active" id="view-list-button" type="button">
+<svg aria-hidden="true" viewbox="0 0 24 24">
+<path d="M5 6h14M5 12h14M5 18h14"></path>
+</svg>
+<span>Elenco</span>
+</button>
+<button aria-controls="calendar-view" aria-label="Mostra la vista calendario" aria-pressed="false" class="view-switcher__button" id="view-calendar-button" type="button">
+<svg aria-hidden="true" viewbox="0 0 24 24">
+<rect height="15" rx="2" width="17" x="3.5" y="5"></rect>
+<path d="M7 3v4M17 3v4M3.5 9h17M8 13h2M14 13h2M8 17h2M14 17h2"></path>
+</svg>
+<span>Calendario</span>
+</button>
+</nav>
+<section aria-label="Vista calendario mensile" class="calendar-view" hidden="" id="calendar-view">
+<div class="calendar-card">
+<header class="calendar-header">
+<button aria-label="Mostra il mese precedente" class="calendar-nav-button" id="calendar-prev" type="button">
+<span aria-hidden="true">‹</span>
+</button>
+<h2 class="calendar-month-title" id="calendar-month-title">AGOSTO 2026</h2>
+<button aria-label="Mostra il mese successivo" class="calendar-nav-button" id="calendar-next" type="button">
+<span aria-hidden="true">›</span>
+</button>
+</header>
+<div aria-hidden="true" class="calendar-weekdays">
+<span>LUN</span><span>MAR</span><span>MER</span><span>GIO</span>
+<span>VEN</span><span>SAB</span><span>DOM</span>
+</div>
+<div aria-labelledby="calendar-month-title" class="calendar-grid" id="calendar-grid" role="grid">
+</div>
+<div aria-label="Legenda calendario" class="calendar-legend">
+<span class="calendar-legend__item">
+<i aria-hidden="true" class="legend-symbol legend-symbol--event"></i>
+        Evento in programma
+      </span>
+<span class="calendar-legend__item">
+<i aria-hidden="true" class="legend-symbol legend-symbol--past">✓</i>
+        Giorno goduto
+      </span>
+<span class="calendar-legend__item">
+<i aria-hidden="true" class="legend-symbol legend-symbol--holiday">✦</i>
+        Festivo
+      </span>
+<span class="calendar-legend__item">
+<i aria-hidden="true" class="legend-symbol legend-symbol--today"></i>
+        Oggi
+      </span>
+</div>
+</div>
+</section><section aria-label="Eventi di agosto 2026" class="events" id="events-list">
 <article class="event birthday" data-comment="Pizza approvata" data-date="2026-08-03" data-emoji="🍕">
 <div class="date">
 <span class="day">03</span>
@@ -694,6 +1138,232 @@ document.addEventListener("DOMContentLoaded", () => {
       status.textContent = `${eventCard.dataset.emoji || "✨"} ${eventCard.dataset.comment || "Top"}`;
     }
   });
+
+  initViewSwitcher();
+  buildCalendarFromEvents(today);
+  initBackToTop();
 });
-</script></body>
+
+function initViewSwitcher() {
+  const listButton = document.getElementById("view-list-button");
+  const calendarButton = document.getElementById("view-calendar-button");
+
+  if (!listButton || !calendarButton) return;
+
+  listButton.addEventListener("click", () => switchView("list"));
+  calendarButton.addEventListener("click", () => switchView("calendar"));
+
+  switchView("list");
+}
+
+function switchView(view) {
+  const eventsList = document.getElementById("events-list");
+  const calendarView = document.getElementById("calendar-view");
+  const listButton = document.getElementById("view-list-button");
+  const calendarButton = document.getElementById("view-calendar-button");
+  const showCalendar = view === "calendar";
+
+  if (!eventsList || !calendarView || !listButton || !calendarButton) return;
+
+  eventsList.hidden = showCalendar;
+  calendarView.hidden = !showCalendar;
+
+  listButton.classList.toggle("is-active", !showCalendar);
+  calendarButton.classList.toggle("is-active", showCalendar);
+  listButton.setAttribute("aria-pressed", String(!showCalendar));
+  calendarButton.setAttribute("aria-pressed", String(showCalendar));
+}
+
+function buildCalendarFromEvents(today) {
+  const eventCards = Array.from(document.querySelectorAll(".event[data-date]"));
+  const monthKeys = [...new Set(
+    eventCards
+      .map((card) => card.dataset.date)
+      .filter(Boolean)
+      .map((date) => date.slice(0, 7))
+  )].sort();
+
+  if (!monthKeys.length) return;
+
+  let currentMonthIndex = 0;
+  const currentMonthKey = [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, "0")
+  ].join("-");
+
+  const todayMonthIndex = monthKeys.indexOf(currentMonthKey);
+  if (todayMonthIndex >= 0) currentMonthIndex = todayMonthIndex;
+
+  const render = () => {
+    renderCalendarMonth(monthKeys[currentMonthIndex], today);
+
+    const previousButton = document.getElementById("calendar-prev");
+    const nextButton = document.getElementById("calendar-next");
+
+    if (previousButton) previousButton.disabled = currentMonthIndex === 0;
+    if (nextButton) nextButton.disabled = currentMonthIndex === monthKeys.length - 1;
+  };
+
+  const previousButton = document.getElementById("calendar-prev");
+  const nextButton = document.getElementById("calendar-next");
+
+  if (previousButton) {
+    previousButton.addEventListener("click", () => {
+      if (currentMonthIndex <= 0) return;
+      currentMonthIndex -= 1;
+      render();
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", () => {
+      if (currentMonthIndex >= monthKeys.length - 1) return;
+      currentMonthIndex += 1;
+      render();
+    });
+  }
+
+  render();
+}
+
+function renderCalendarMonth(monthKey, today) {
+  const [year, month] = monthKey.split("-").map(Number);
+  const grid = document.getElementById("calendar-grid");
+  const title = document.getElementById("calendar-month-title");
+
+  if (!grid || !title) return;
+
+  const monthNames = [
+    "GENNAIO", "FEBBRAIO", "MARZO", "APRILE", "MAGGIO", "GIUGNO",
+    "LUGLIO", "AGOSTO", "SETTEMBRE", "OTTOBRE", "NOVEMBRE", "DICEMBRE"
+  ];
+
+  title.textContent = `${monthNames[month - 1]} ${year}`;
+  grid.replaceChildren();
+
+  const firstDay = new Date(year, month - 1, 1);
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const leadingEmptyCells = (firstDay.getDay() + 6) % 7;
+
+  for (let index = 0; index < leadingEmptyCells; index += 1) {
+    const emptyCell = document.createElement("span");
+    emptyCell.className = "calendar-day calendar-day--empty";
+    emptyCell.setAttribute("aria-hidden", "true");
+    grid.append(emptyCell);
+  }
+
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const dateKey = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    const eventCard = document.querySelector(`.event[data-date="${dateKey}"]`);
+    const isToday =
+      today.getFullYear() === year &&
+      today.getMonth() === month - 1 &&
+      today.getDate() === day;
+
+    if (!eventCard) {
+      const neutralDay = document.createElement("span");
+      neutralDay.className = `calendar-day${isToday ? " is-today" : ""}`;
+      neutralDay.setAttribute("role", "gridcell");
+
+      const dayNumber = document.createElement("span");
+      dayNumber.className = "calendar-day-number";
+      dayNumber.textContent = String(day);
+      neutralDay.append(dayNumber);
+      grid.append(neutralDay);
+      continue;
+    }
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "calendar-day-button";
+    button.dataset.date = dateKey;
+    button.setAttribute("role", "gridcell");
+    button.setAttribute("aria-label", getCalendarDayLabel(eventCard, dateKey));
+
+    const state = getEventState(eventCard);
+    if (state === "past") button.classList.add("is-past");
+    if (state === "rested") button.classList.add("is-rested");
+    if (state === "event") button.classList.add("is-event");
+    if (eventCard.classList.contains("special-date")) button.classList.add("is-special");
+    if (isToday) button.classList.add("is-today");
+
+    const dayNumber = document.createElement("span");
+    dayNumber.className = "calendar-day-number";
+    dayNumber.textContent = String(day);
+    button.append(dayNumber);
+
+    button.addEventListener("click", () => scrollToEventDate(dateKey));
+    grid.append(button);
+  }
+}
+
+function getEventState(eventCard) {
+  if (eventCard.classList.contains("past")) return "past";
+  if (
+    eventCard.classList.contains("pending") &&
+    eventCard.classList.contains("rested")
+  ) return "rested";
+  if (eventCard.classList.contains("pending")) return "pending";
+  return "event";
+}
+
+function getCalendarDayLabel(eventCard, dateKey) {
+  const title = eventCard.querySelector(".title");
+  const readableTitle = title ? title.textContent.trim() : "Evento";
+  const state = getEventState(eventCard);
+  const stateLabels = {
+    past: "giorno goduto",
+    rested: "giorno di riposo trascorso",
+    pending: "programma da definire",
+    event: "evento in programma"
+  };
+  const special = eventCard.classList.contains("special-date") ? ", festivo" : "";
+  return `${dateKey}, ${readableTitle}, ${stateLabels[state]}${special}`;
+}
+
+function scrollToEventDate(dateKey) {
+  const eventCard = document.querySelector(`.event[data-date="${dateKey}"]`);
+  if (!eventCard) return;
+
+  switchView("list");
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  window.requestAnimationFrame(() => {
+    eventCard.classList.add("event-calendar-highlight");
+    eventCard.scrollIntoView({
+      behavior: reducedMotion ? "auto" : "smooth",
+      block: "center"
+    });
+
+    window.setTimeout(() => {
+      eventCard.classList.remove("event-calendar-highlight");
+    }, reducedMotion ? 500 : 1500);
+  });
+}
+
+function initBackToTop() {
+  const button = document.getElementById("back-to-top");
+  if (!button) return;
+
+  const updateVisibility = () => {
+    button.classList.toggle("is-visible", window.scrollY > 420);
+  };
+
+  button.addEventListener("click", () => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({
+      top: 0,
+      behavior: reducedMotion ? "auto" : "smooth"
+    });
+  });
+
+  window.addEventListener("scroll", updateVisibility, { passive:true });
+  updateVisibility();
+}
+</script><button aria-label="Torna all’inizio della pagina" class="back-to-top" id="back-to-top" type="button">
+<svg aria-hidden="true" viewbox="0 0 24 24">
+<path d="M6 14l6-6 6 6"></path>
+</svg>
+</button></body>
 </html>
