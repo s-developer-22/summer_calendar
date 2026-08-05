@@ -1033,6 +1033,166 @@
       }
     }
 
+
+    /* Aggiornamento grafico approvato — allineamenti e leggibilità */
+    :root {
+      --event-control-size:34px;
+    }
+
+    /* Il blocco data mantiene la stessa asse in ogni card ed è centrato
+       verticalmente rispetto all'intera scheda evento. */
+    .event {
+      align-items:center;
+    }
+
+    .date {
+      align-self:center;
+      width:100%;
+      min-width:0;
+      min-height:96px;
+      height:auto;
+      padding-right:0;
+      justify-content:center;
+    }
+
+    .day,
+    .month,
+    .weekday {
+      display:block;
+      width:100%;
+      text-align:center;
+    }
+
+    .day {
+      font-variant-numeric:tabular-nums;
+      font-feature-settings:"tnum" 1;
+      -webkit-text-stroke:.65px var(--ink);
+      paint-order:stroke fill;
+      text-shadow:1px 1px 0 var(--ink);
+    }
+
+    .month {
+      -webkit-text-stroke:.45px var(--ink);
+      paint-order:stroke fill;
+      text-shadow:.7px .7px 0 var(--ink);
+    }
+
+    /* Metadati più piccoli e leggeri. */
+    .meta {
+      gap:4px;
+      font-size:12px;
+      line-height:1.15;
+      font-weight:600;
+    }
+
+    .meta-row {
+      grid-template-columns:15px minmax(0,1fr);
+      align-items:center;
+      gap:4px;
+    }
+
+    .icon {
+      font-size:12px;
+      line-height:1;
+    }
+
+    /* Status e pulsanti: stessa altezza visiva e centro comune. */
+    .status-actions-row {
+      align-items:center;
+      gap:7px;
+    }
+
+    .status-actions-row .status {
+      height:var(--event-control-size);
+      min-height:var(--event-control-size);
+      padding:0 10px;
+      line-height:1;
+    }
+
+    .event-actions {
+      gap:7px;
+    }
+
+    .event-action-button {
+      position:relative;
+      width:var(--event-control-size);
+      height:var(--event-control-size);
+      min-width:var(--event-control-size);
+      min-height:var(--event-control-size);
+      padding:0;
+      border:2px solid var(--ink);
+      border-radius:50%;
+      background:var(--paper);
+      box-shadow:2px 3px 0 var(--ink);
+      transform:none;
+    }
+
+    .event-action-button::before {
+      display:none;
+    }
+
+    /* Area touch invisibile più ampia senza alterare il cerchio visivo. */
+    .event-action-button::after {
+      content:"";
+      position:absolute;
+      inset:-5px;
+      border-radius:50%;
+    }
+
+    .event-action-button--calendar {
+      background:var(--purple);
+      color:#fff;
+    }
+
+    .event-action-button--share {
+      background:var(--yellow);
+      color:var(--ink);
+    }
+
+    .event-action-button:hover {
+      transform:translateY(-1px);
+    }
+
+    .event-action-button:active {
+      transform:translateY(2px);
+      box-shadow:1px 1px 0 var(--ink);
+    }
+
+    @media (max-width:380px) {
+      :root {
+        --event-control-size:32px;
+      }
+
+      .date {
+        min-height:88px;
+      }
+
+      .meta {
+        font-size:11.5px;
+        font-weight:600;
+      }
+
+      .meta-row {
+        grid-template-columns:14px minmax(0,1fr);
+      }
+
+      .icon {
+        font-size:11.5px;
+      }
+
+      .status-actions-row .status {
+        padding-left:8px;
+        padding-right:8px;
+      }
+
+      .event-action-button {
+        width:var(--event-control-size);
+        height:var(--event-control-size);
+        min-width:var(--event-control-size);
+        min-height:var(--event-control-size);
+      }
+    }
+
 </style>
 </head>
 <body>
