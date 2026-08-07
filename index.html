@@ -1391,6 +1391,58 @@
       padding-bottom:0;
     }
 
+
+
+    /* FIX FINALE: Instagram degli eventi trascorsi all’angolo destro */
+    .event.past .status-actions-row {
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      width:100%;
+      min-height:var(--event-control-size);
+      margin-top:3px;
+      padding:0;
+      gap:0;
+    }
+
+    .event.past .status-actions-row > .status {
+      margin:0;
+      flex:0 1 auto;
+    }
+
+    .event.past .event-actions,
+    .event.past.has-mascot .event-actions {
+      position:absolute;
+      top:50%;
+      right:-50px;
+      bottom:auto;
+      transform:translateY(-50%);
+      z-index:8;
+      width:var(--event-control-size);
+      height:var(--event-control-size);
+      min-width:var(--event-control-size);
+      margin:0;
+      display:flex !important;
+      align-items:center;
+      justify-content:center;
+    }
+
+    /* Le card con mascotte hanno più spazio riservato sulla destra. */
+    .event.past.has-mascot .event-actions {
+      right:-76px;
+    }
+
+    @media (max-width:380px) {
+      .event.past .event-actions {
+        right:-50px;
+      }
+
+      .event.past.has-mascot .event-actions {
+        right:-76px;
+      }
+    }
+
 </style>
 </head>
 <body>
