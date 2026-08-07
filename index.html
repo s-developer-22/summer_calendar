@@ -1233,12 +1233,22 @@
       stroke-linejoin:round;
     }
 
-    /* Dopo la mezzanotte resta visibile solo il tasto Instagram. */
+    /* Dopo la mezzanotte resta visibile il commento dell'evento e,
+       separato sulla destra, il solo tasto Instagram. */
     .event.past .status-actions-row {
       position:static;
-      width:0;
-      height:0;
-      margin:0;
+      display:flex;
+      width:100%;
+      height:auto;
+      margin-top:1px;
+      padding-right:42px;
+      align-items:center;
+      justify-content:flex-start;
+    }
+
+    .event.past .status-actions-row > .status {
+      display:inline-flex !important;
+      background:var(--coral);
     }
 
     .event.past .event-actions {
@@ -2504,7 +2514,9 @@ async function renderEventCardSticker(eventCard) {
   clone.style.maxWidth = "none";
 
   /* Lo sticker contiene la card, non i controlli dell'interfaccia. */
-  clone.querySelectorAll(".event-actions, .status-actions-row, .next-event-badge").forEach((element) => {
+  /* Elimina solo i controlli: negli eventi trascorsi il commento resta
+     parte della card e viene incluso anche nello sticker. */
+  clone.querySelectorAll(".event-actions, .next-event-badge").forEach((element) => {
     element.remove();
   });
 
