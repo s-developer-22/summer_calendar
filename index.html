@@ -2427,22 +2427,30 @@ document.addEventListener("DOMContentLoaded", () => {
 function initInstagramStickerActions() {
   document.querySelectorAll(".event[data-date]:not(.pending)").forEach((eventCard) => {
     const actions = eventCard.querySelector(".event-actions");
-    if (!actions || actions.querySelector(".event-action-button--instagram")) return;
+    if (!actions) return;
 
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "event-action-button event-action-button--instagram";
-    button.title = "Copia la card come sticker Instagram";
-    button.setAttribute("aria-label", "Copia questa card come sticker per una Storia Instagram");
-    button.innerHTML = `
-      <svg aria-hidden="true" viewBox="0 0 24 24">
-        <rect x="4" y="4" width="16" height="16" rx="5"></rect>
-        <circle cx="12" cy="12" r="3.4"></circle>
-        <circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"></circle>
-      </svg>`;
+    /* Il pulsante può essere già presente nel markup. In quel caso non va
+       ignorato: bisogna comunque collegargli il gestore del clic. */
+    let button = actions.querySelector(".event-action-button--instagram");
 
+    if (!button) {
+      button = document.createElement("button");
+      button.type = "button";
+      button.className = "event-action-button event-action-button--instagram";
+      button.title = "Copia la card come sticker Instagram";
+      button.setAttribute("aria-label", "Copia questa card come sticker per una Storia Instagram");
+      button.innerHTML = `
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <rect x="4" y="4" width="16" height="16" rx="5"></rect>
+          <circle cx="12" cy="12" r="3.4"></circle>
+          <circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>`;
+      actions.append(button);
+    }
+
+    if (button.dataset.instagramStickerBound === "true") return;
+    button.dataset.instagramStickerBound = "true";
     button.addEventListener("click", () => copyEventCardAsInstagramSticker(eventCard, button));
-    actions.append(button);
   });
 }
 
@@ -2476,7 +2484,10 @@ async function copyEventCardAsInstagramSticker(eventCard, button) {
     await shareOrDownloadInstagramSticker(blob, eventCard);
   } catch (error) {
     console.error("Errore generazione sticker Instagram:", error);
-    showToast("Sticker non generato: riprova da Safari su GitHub Pages");
+    const reason = error && error.name === "NotAllowedError"
+      ? "Safari non ha autorizzato la copia: tocca di nuovo il pulsante"
+      : "Sticker non generato: riprova da Safari su GitHub Pages";
+    showToast(reason);
   } finally {
     button.classList.remove("is-working");
     button.removeAttribute("aria-busy");
