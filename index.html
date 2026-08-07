@@ -1347,6 +1347,50 @@
     .event:not(.pending):not(.past) .event-action-button--instagram {
       display:grid !important;
     }
+
+
+    /* Eventi trascorsi: commento e Instagram sulla stessa riga */
+    .event.past .status-actions-row {
+      position:static;
+      display:flex;
+      width:100%;
+      height:auto;
+      margin-top:3px;
+      padding-right:0;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .event.past .status-actions-row > .status {
+      display:inline-flex !important;
+      align-items:center;
+      min-height:var(--event-control-size);
+      margin:0;
+      flex:0 1 auto;
+    }
+
+    .event.past .event-actions,
+    .event.past.has-mascot .event-actions {
+      position:static;
+      right:auto;
+      bottom:auto;
+      z-index:7;
+      display:flex !important;
+      align-items:center;
+      justify-content:center;
+      width:var(--event-control-size);
+      height:var(--event-control-size);
+      min-width:var(--event-control-size);
+      margin:0 0 0 auto;
+      flex:0 0 var(--event-control-size);
+      gap:0;
+    }
+
+    .event.past .content {
+      padding-bottom:0;
+    }
+
 </style>
 </head>
 <body>
